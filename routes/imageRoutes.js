@@ -1,11 +1,20 @@
 const express = require('express');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-const { uploadImage, getAllImages } = require('../controllers/imageController');
+
+const {
+  uploadImage,
+  getAllImages,
+  deleteImage
+} = require('../controllers/imageController');
 
 const router = express.Router();
 
-router.post('/upload', upload.single('image'), uploadImage);
+// ✅ Rename this to match resource logic
+router.post('/', upload.single('image'), uploadImage);
+
+// Already correct:
 router.get('/', getAllImages);
+router.delete('/:id', deleteImage);
 
 module.exports = router;

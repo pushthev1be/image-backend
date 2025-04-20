@@ -5,12 +5,12 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// Log the MONGO_URI for debugging (remove this in production)
 console.log('MONGO_URI:', process.env.MONGO_URI);
 
 const app = express();
 
-app.use(cors());
+// ✅ Allow only frontend from Vercel to access
+app.use(cors({ origin: 'https://image-gallery-git-main-pushthev1bes-projects.vercel.app' }));
 app.use(express.json());
 
 // Connect MongoDB
